@@ -63,9 +63,21 @@ But this not the correct ways and this way doesnt look that good. But its time c
 ```typescript
 const rahul=index.getByIndex(3);
 ```
-looks so simple but you will need to remind index and the time complexity is O(n) and thats not good, above function work as array and thats what we need.
+looks so simple but you will need to remind index and the time complexity is O(n) and thats not good, above function work as array and thats not what we need.
 
 ### 3.
 ```typescript
 const rahul=index.getAllOf('name','rahul');
 ```
+this also looks simple and you dont even have to remind index but the time complexity is still O(n) and thats not what we except from Index.<br>
+<br>
+All this above methods are valid but not satisfying, to satisfy and to make time complexity approximatly constant, you will need to create an index like we make in mongodb if you know. By saying
+```typescript
+index.createIndex('name');  //indexName which is key of one of your property of your inserted  data
+```
+now using this index you can perfom many actions 
+## Get using custom index
+```typescript
+const rahul=index.getByCustomId('name','rahul'); //this will give you all data related to rahul
+```
+using this you can get imformation of rahul in better time complexity approximately constant but not constant(less than equal to 1) but it depends on number of indexes you had created , in our case we had created 1 index thats why time complexity of above fuction is O(1). But this function doesnt care how many data you have.
