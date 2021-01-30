@@ -1,0 +1,112 @@
+
+
+
+class Index{
+    value:object;
+    uuid:Array<string>;
+    index:object;
+    constructor(){
+        this.value={};
+        this.uuid=[];
+        this.index={};
+    }
+    insert(data:object):string{
+        const uuid:string=this.create_UUID();
+        this.value[uuid]= data;
+        this.uuid.push(uuid);
+        Object.keys(this.index).forEach((indexName)=>{this.useIndex(uuid,indexName,data)});
+        return uuid;
+    }
+    create_UUID(){
+        let dt: number = new Date().getTime();
+        const uuid:string = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c):string =>{
+            let r:number = (dt + Math.random()*16)%16 | 0;
+            dt= Math.floor(dt/16);
+            return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+        });
+        return uuid;
+    }
+    delete(uuid:string):object{
+        delete this.value[uuid];
+        let index=this.uuid.indexOf(uuid);
+        this.uuid.splice(index,1);
+        return this.value;
+    }
+    deleteByIndex(index:number):object{
+        let uuid=this.uuid[index];
+        delete this.value[uuid];
+        this.uuid.splice(index,1);
+        return this.value;
+    }
+    getByIndex(index:number):object{
+        let uuid=this.uuid[index];
+        return this.value[uuid];
+    }
+    get(uuid:string):object{
+        return this.value[uuid];
+    }
+    getByValue(key2:string,value:any):object | undefined{
+        const obj:object=this.value;
+        return obj[Object.keys(obj).find(key =>JSON.stringify(obj[key][key2])===JSON.stringify(value))];
+    }
+    getId(value:any):string | undefined{
+        const obj:object=this.value;
+        return Object.keys(obj).find(key =>JSON.stringify(obj[key])===JSON.stringify(value));
+    }
+    getAllOf(key2:string,value:any):Array<object>{
+        const obj:object=this.value;
+        const key:Array<string>=Object.keys(obj);
+        const main:Array<object>=[];
+        for(let i of key){
+            if(JSON.stringify(obj[i][key2])===JSON.stringify(value)){
+                main.push(obj[i]);
+            }
+        }
+        return main;
+    }
+    getAll():object{
+        return this.value;
+    }
+    length():number{
+        const key:Array<string>=Object.keys(this.value);
+        return key.length;
+    }
+    getIdByIndex(index:number):string{
+        return this.uuid[index];
+    }
+    //*custum indexes
+    createIndex(keyName:string):string{
+        this.index[keyName]={};
+        return keyName
+    }
+    useIndex(uuid:string,indexName:string,data:object){
+        if(this.index[indexName][data[indexName]]){
+            this.index[indexName][data[indexName]].push(uuid);
+        }
+        else{
+            this.index[indexName][data[indexName]]=[uuid];
+        }
+    }
+    getIndex(){
+        return this.index;
+    }
+    getByCustomIndex(indexName:string,indexValue:any){
+        let value:Array<object>=[];
+        this.index[indexName][indexValue].forEach(uuid => {
+            value.push(this.value[uuid]);
+        });
+        return value;
+    }
+    deleteByCustomIndex(indexName:string,indexValue:any):void{
+        this.index[indexName][indexValue].forEach(uuid => {
+            this.delete(uuid);
+        });
+    }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+        "watch": true,
+        "lib":["es2017","dom"]
+    }
+}
