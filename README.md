@@ -19,9 +19,19 @@ index.insert({
 }); // must be object
 
 index.insert({
-  name:'tanay',
+  name:'rahul',
   info:'i am one of the best frontend developer',
   data_of_birth:'7-8-2003'
 }); // must be object
 
+```
+you can also try by consoling
+```typescript
+console.log(
+  index.insert({
+    name:'rahul',
+    info:'i am one of the best frontend developer',
+    data_of_birth:'7-8-2003'
+  }
+); // must be object)
 ```
