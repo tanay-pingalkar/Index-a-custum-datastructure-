@@ -5,6 +5,7 @@ You can think of it as a better version of array. In array if you want to get ke
 ```typescript
 const index=new Index();
 
+
 index.insert({
   name:'tanay',
   info:'i am a self taught programmer',
