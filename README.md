@@ -4,19 +4,18 @@ You can think of it as a better version of array. In array if you want to get ke
 ## insertion
 ```typescript
 const index=new Index();
+
 index.insert({
   name:'tanay',
   info:'i am a self taught programmer',
   data_of_birth:'6-8-2006'
 }); // must be object
 
-
 index.insert({
   name:'david',
   info:'i am one of the best backend developer',
   data_of_birth:'7-8-2003'
 }); // must be object
-
 
 index.insert({
   name:'tanay',
