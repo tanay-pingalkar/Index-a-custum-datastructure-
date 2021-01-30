@@ -80,4 +80,4 @@ now using this index you can perfom many actions
 ```typescript
 const rahul=index.getByCustomId('name','rahul'); //this will give you all data related to rahul
 ```
-using this you can get imformation of rahul in better time complexity approximately constant but not constant(less than equal to 1) but it depends on number of indexes you had created , in our case we had created 1 index thats why time complexity of above fuction is O(1). But this function doesnt care how many data you have.
+using this you can get imformation of rahul in better time complexity approximately constant but not constant(greater than equal to 1) but it depends on number of indexes you had created , in our case we had created 1 index thats why time complexity of above fuction is O(1). But this function doesnt care how many data you have.
