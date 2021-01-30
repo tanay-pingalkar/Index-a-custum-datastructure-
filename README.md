@@ -43,4 +43,29 @@ this is the unique id for the object we had made which we will need afterwards
 
 ## Get/fetch
 there are many ways to get inserted data
-### lol
+### 1.
+```typescript
+const inserted_data=index.get(unique id);
+```
+but i know that you dont know that unique id. You will need to store id when you are inserting. <br>
+Like:-
+```typescript
+const uuid_of_rahul=index.insert({
+  name:'rahul',
+  info:'i am one of the best frontend developer',
+  data_of_birth:'7-8-2003'
+}); // must be object
+const inserted_data=index.get(uuid_of_rahul);
+```
+But this not the correct ways and this way doesnt look that good. But its time complexity is constant.
+
+### 2.
+```typescript
+const rahul=index.getByIndex(3);
+```
+looks so simple but you will need to remind index and the time complexity is O(n) and thats not good, above function work as array and thats what we need.
+
+### 3.
+```typescript
+const rahul=index.getAllOf('name','rahul');
+```
