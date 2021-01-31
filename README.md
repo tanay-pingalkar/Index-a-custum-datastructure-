@@ -115,3 +115,25 @@ index.updateByIndex(3,'7-8-2003','date_of_birth');
 This will update 3rd object in index. You can also skip "key" and can specify whole object which is going to replace. 
 This method also has constant time complexity but you will still need to remind index value like in array.
 ### 3.
+```typescript
+index.updateAllOf(searchKey,searchValue,new-update,key(optional));
+```
+Example:-
+```typescript
+index.updateAllOf('name','rahul','7-8-2003','date_of_birth');
+```
+this method will update date_of_birth of rahul and you dont even have to know uuid nor index. But the problem here is that it time complexity is O(n)
+because it is looping over whole object and comparing every object to the given object like array. But Index have better way to solve this problem by creating index.
+### 4.Using Custom Index
+first of all we will need to create index. Actually we had created index before but with index name "date_of_birth" but now we want find name Rahul and then update his date of 
+birth.To do that type(WARNING:-type this before inserting data):-
+```typescript
+index.createIndex('name');//thats it but very important
+```
+now to update
+```typescript
+index.updateByCustomIndex('name','rahul','7-8-2003','date_of_birth')
+//                      _____|     |        |__          |___
+//                      |          |          |             |
+//                [idex Name] [index value]  [new value]  [key(optional)]
+```
