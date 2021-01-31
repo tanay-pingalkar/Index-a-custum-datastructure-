@@ -63,7 +63,7 @@ But this not the correct ways and this way doesnt look that good. But its time c
 ```typescript
 const rahul=index.getByIndex(3);
 ```
-looks so simple but you will need to remind index and the time complexity is O(n) and thats not good, above function work as array and thats not what we need.
+looks so simple and time complexity is also constant but you will need to remind index  and thats not good, above function work as array and thats not what we need.
 
 ### 3.
 ```typescript
@@ -81,3 +81,5 @@ now using this index you can perfom many actions
 const rahul=index.getByCustomIndex('name','rahul'); //this will give you all data related to rahul
 ```
 using this you can get imformation of rahul in better time complexity approximately constant but not constant(greater than equal to 1) but it depends on number of indexes you had created , in our case we had created 1 index thats why time complexity of above fuction is O(1). But this function doesnt care how many data you have.
+
+But make sure to create index before inserting data or all you previous data will lost.
