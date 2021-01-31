@@ -1,6 +1,3 @@
-
-
-
 class Index{
     value:object;
     uuid:Array<string>;
@@ -67,6 +64,13 @@ class Index{
     getAll():object{
         return this.value;
     }
+    getAllOrdered():Array<object>{
+        const ar:Array<object>=[];
+        this.uuid.forEach((value)=>{
+            ar.push(this.value[value]);
+        });
+        return ar;
+    }
     length():number{
         const key:Array<string>=Object.keys(this.value);
         return key.length;
@@ -102,7 +106,90 @@ class Index{
             this.delete(uuid);
         });
     }
+    update(uuid:string, value:any,key?:string):void{
+        if(key) this.value[uuid][key]=value;
+        else this.value[uuid]=value;
+    }
+    updateByIndex(index:number,value:any,key?:string):void{
+        if(key) this.value[this.uuid[index]][key]=value;
+        else this.value[this.uuid[index]]=value;
+    }
+    updateAllOf(searchKey:string,searchValue:object | string, valuetoupdate:any, updatingKey?:string):void{
+        for(let i of Object.keys(this.value)){
+            if(JSON.stringify(this.value[i][searchKey])===JSON.stringify(searchValue)){
+                if(!updatingKey) this.value[i]=valuetoupdate;
+                else this.value[i][updatingKey]=valuetoupdate;
+            }
+        }
+    }
+    updateByCustomIndex(indexName:string,indexValue:any, valuetoupdate:any, updatingKey?:string):void{
+        this.index[indexName][indexValue].forEach(uuid => {
+            if(updatingKey) this.value[uuid][updatingKey]=valuetoupdate;
+            else this.value[uuid]=valuetoupdate;
+        });
+    }
 }
+
+const index=new Index();
+
+console.time('insertion-time');
+index.createIndex('data_of_birth');
+index.insert({
+    name: 'tanay',
+    info: 'i am a self taught programmer',
+    data_of_birth: '6-8-2006'
+}); // must be object
+index.insert({
+    name: 'rahul',
+    info: 'i am one of the best frontend developer',
+    data_of_birth: '7-8-2003'
+});
+index.insert({
+    name: 'krutika',
+    info: 'i am one of the best frontend developer',
+    data_of_birth: '7-8-2003'
+});
+index.insert({
+    name: 'bhai',
+    info: 'i am one of the best frontend developer',
+    data_of_birth: '1-1-1999'
+});
+index.insert({
+    name: 'rahul',
+    info: 'i am one of the best frontend developer',
+    data_of_birth: '1-1-1999'
+});
+index.insert({
+    name: 'devendra',
+    info: 'i am one of the best frontend developer',
+    data_of_birth: '7-11-2003'
+});
+index.insert({
+    name: 'mangesh',
+    info: 'i am one of the best frontend developer',
+    data_of_birth: '7-10-2003'
+});
+index.insert({
+    name: 'culbul',
+    info: 'i am one of the best frontend developer',
+    data_of_birth: '7-8-2001'
+});
+index.insert({
+    name: 'vala',
+    info: 'i am one of the best frontend developer',
+    data_of_birth: '7-8-2003'
+}); // must be object)
+
+index.updateByCustomIndex('data_of_birth','1-1-1999','i dont want to tell','data_of_birth')
+
+console.log(index.getAllOrdered())
+
+
+
+
+
+
+
 
 
 
