@@ -85,4 +85,33 @@ const rahul=index.getByCustomIndex('name','rahul'); //this will give you all dat
 using this you can get imformation of rahul in better time complexity approximately constant but not constant(greater than equal to 1) but it depends on number of indexes you had created , in our case we had created 1 index thats why time complexity of above fuction is O(1). But this function doesnt care how many data you have.
 
 
-##
+## Updating values
+to update value there are also many ways but each method varies form each other in terms of time complexity and usage.
+### 1.
+```typescript
+index.update(uuid,new-value,key(optional));
+```
+example:-
+```typescript
+index.update(uuid,'i am backend developer','info');
+```
+or
+```typescript
+index.update(uuid,{
+    name:'rahul',
+    info:'i am one of the best frontend developer',
+    data_of_birth:'7-8-2003'
+});//this method is use to update many values;
+```
+Using update method you will need to know uuid which you can get when you insert data.But if you dont know uuid then you will not be able to use this method.By the way, the good thing about this method is that time complexity id constant.
+### 2.
+```typescript
+index.updateByIndex(index,new-value,key(optional));
+```
+Example:-
+```typescript
+index.updateByIndex(3,'7-8-2003','date_of_birth');
+```
+This will update 3rd object in index. You can also skip "key" and can specify whole object which is going to replace. 
+This method also has constant time complexity but you will still need to remind index value like in array.
+### 3.
