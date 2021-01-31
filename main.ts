@@ -1,4 +1,4 @@
-class Index{
+export class Index{
     value:object;
     uuid:Array<string>;
     index:object;
@@ -130,59 +130,6 @@ class Index{
     }
 }
 
-const index=new Index();
-
-console.time('insertion-time');
-index.createIndex('data_of_birth');
-index.insert({
-    name: 'tanay',
-    info: 'i am a self taught programmer',
-    data_of_birth: '6-8-2006'
-}); // must be object
-index.insert({
-    name: 'rahul',
-    info: 'i am one of the best frontend developer',
-    data_of_birth: '7-8-2003'
-});
-index.insert({
-    name: 'krutika',
-    info: 'i am one of the best frontend developer',
-    data_of_birth: '7-8-2003'
-});
-index.insert({
-    name: 'bhai',
-    info: 'i am one of the best frontend developer',
-    data_of_birth: '1-1-1999'
-});
-index.insert({
-    name: 'rahul',
-    info: 'i am one of the best frontend developer',
-    data_of_birth: '1-1-1999'
-});
-index.insert({
-    name: 'devendra',
-    info: 'i am one of the best frontend developer',
-    data_of_birth: '7-11-2003'
-});
-index.insert({
-    name: 'mangesh',
-    info: 'i am one of the best frontend developer',
-    data_of_birth: '7-10-2003'
-});
-index.insert({
-    name: 'culbul',
-    info: 'i am one of the best frontend developer',
-    data_of_birth: '7-8-2001'
-});
-index.insert({
-    name: 'vala',
-    info: 'i am one of the best frontend developer',
-    data_of_birth: '7-8-2003'
-}); // must be object)
-
-index.updateByCustomIndex('data_of_birth','1-1-1999','i dont want to tell','data_of_birth')
-
-console.log(index.getAllOrdered())
 
 
 
