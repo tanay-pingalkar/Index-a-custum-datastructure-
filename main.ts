@@ -160,7 +160,7 @@ class Index{
             else this.value[uuid]=valuetoupdate;
         });
     }
-}
+};
 
 
 
