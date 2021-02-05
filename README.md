@@ -7,6 +7,9 @@ You can think of it as a better version of array. In array if you want to get ke
 https://cdn.jsdelivr.net/gh/tanay-pingalkar/Index-a-custum-datastructure-@main/index.js
 ```
 this is the lattest cdn. Npm package is not yet realeased.
+```html
+<script src='https://cdn.jsdelivr.net/gh/tanay-pingalkar/Index-a-custum-datastructure-@main/index.js'></script>
+```
 ## Insertion
 ```typescript
 const index=new Index();
