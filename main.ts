@@ -1,4 +1,4 @@
-export class Index{
+class Index{
     value:object;
     uuid:Array<string>;
     index:object;

@@ -1,6 +1,3 @@
-"use strict";
-exports.__esModule = true;
-exports.Index = void 0;
 var Index = /** @class */ (function () {
     function Index(schema) {
         this.value = {};
@@ -177,4 +174,3 @@ var Index = /** @class */ (function () {
     };
     return Index;
 }());
-exports.Index = Index;
