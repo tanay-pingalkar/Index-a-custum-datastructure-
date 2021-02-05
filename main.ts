@@ -2,17 +2,42 @@ export class Index{
     value:object;
     uuid:Array<string>;
     index:object;
-    constructor(){
+    schema:Array<string>;
+    constructor(schema?:Array<string>){
         this.value={};
         this.uuid=[];
         this.index={};
+        if (schema){
+            this.schema=schema
+        }
     }
     insert(data:object):string{
-        const uuid:string=this.create_UUID();
-        this.value[uuid]= data;
-        this.uuid.push(uuid);
-        Object.keys(this.index).forEach((indexName)=>{this.useIndex(uuid,indexName,data)});
-        return uuid;
+        if(this.schema){
+            if(this.schemaCheck(data)){
+                const uuid:string=this.create_UUID();
+                this.value[uuid]= data;
+                this.uuid.push(uuid);
+                Object.keys(this.index).forEach((indexName)=>{this.useIndex(uuid,indexName,data)});
+                return uuid;
+            }
+            else{
+                console.error('provided data wont match to provided schema')
+                return 'provided data wont match to provided schema';
+            }
+        }
+        else{
+            const uuid:string=this.create_UUID();
+            this.value[uuid]= data;
+            this.uuid.push(uuid);
+            Object.keys(this.index).forEach((indexName)=>{this.useIndex(uuid,indexName,data)});
+            return uuid;
+        }
+    }
+    schemaCheck(data:object):boolean{
+        if(JSON.stringify(Object.keys(data))===JSON.stringify(this.schema)){
+            return true;
+        }
+        else return false;
     }
     create_UUID(){
         let dt: number = new Date().getTime();
