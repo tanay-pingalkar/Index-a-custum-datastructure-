@@ -147,3 +147,9 @@ index.updateByCustomIndex('name','rahul','7-8-2003','date_of_birth')
 //                      |          |          |             |
 //                [idex Name] [index value]  [new value]  [key(optional)]
 ```
+You can also delete objects in our index by all this following commands
+```typescript
+//1
+index.delete(uuid of object);
+Index.deleteByIndex(index of object) 
+```
