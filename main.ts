@@ -43,6 +43,9 @@ export class Index{
         }
         else return false;
     }
+    noSchema(){
+        this.schema=undefined;
+    }
     create_UUID(){
         let dt: number = new Date().getTime();
         const uuid:string = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c):string =>{
@@ -158,6 +161,7 @@ export class Index{
         });
     }
 }
+
 
 
 
