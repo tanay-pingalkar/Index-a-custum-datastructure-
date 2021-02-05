@@ -11,6 +11,10 @@ export class Index{
             this.schema=schema
         }
     }
+    makeSchema(schema:Array<string>):Array<string>{
+        this.schema=schema;
+        return this.schema
+    }
     insert(data:object):string{
         if(this.schema){
             if(this.schemaCheck(data)){
