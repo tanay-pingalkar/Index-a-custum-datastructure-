@@ -1,6 +1,16 @@
 # Index-a-custum-datastructure-
 You can think of it as a better version of array. In array if you want to get key by value, you will need to loop over the whole array and the time complexity becomes O(n). But in my data structure, I tried to make the time complexity as much as constant even if you want to take key by value. That is the magic of Index. That is what I had tried to make.
-
+Index is such data structure that it is ordered and unordered both. 
+It works very well in typescript because it is itself made in typescript. 
+## Get started
+### CDN
+```cdn
+https://cdn.jsdelivr.net/gh/tanay-pingalkar/Index-a-custum-datastructure-@main/index.js
+```
+this is the lattest cdn. Npm package is not yet realeased.
+```html
+<script src='https://cdn.jsdelivr.net/gh/tanay-pingalkar/Index-a-custum-datastructure-@main/index.js'></script>
+```
 ## Insertion
 ```typescript
 const index=new Index();
@@ -82,7 +92,7 @@ now using this index you can perfom many actions
 ```typescript
 const rahul=index.getByCustomIndex('name','rahul'); //this will give you all data related to rahul
 ```
-using this you can get imformation of rahul in better time complexity approximately constant but not constant(greater than equal to 1) but it depends on number of indexes you had created , in our case we had created 1 index thats why time complexity of above fuction is O(1). But this function doesnt care how many data you have.
+using this you can get imformation of rahul in better time complexity approximately constant but not constant(greater than equal to 1) for insertion but it depends on number of indexes you had created , in our case we had created 1 index thats why time complexity of above fuction is O(1). But this function doesnt care how many data you have.
 
 
 ## Updating values
@@ -136,4 +146,10 @@ index.updateByCustomIndex('name','rahul','7-8-2003','date_of_birth')
 //                      _____|     |        |__          |___
 //                      |          |          |             |
 //                [idex Name] [index value]  [new value]  [key(optional)]
+```
+You can also delete objects in our index by all this following commands
+```typescript
+//1
+index.delete(uuid of object);
+Index.deleteByIndex(index of object) 
 ```
