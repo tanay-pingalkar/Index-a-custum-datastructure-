@@ -1,12 +1,15 @@
-class Index{
+interface indexSkeleton{
     value:object;
     uuid:Array<string>;
     index:object;
     schema:Array<string>;
+}
+class Index implements indexSkeleton{
+    value={};
+    uuid=[];
+    index={};
+    schema=[];
     constructor(schema?:Array<string>){
-        this.value={};
-        this.uuid=[];
-        this.index={};
         if (schema){
             this.schema=schema
         }
@@ -15,7 +18,7 @@ class Index{
         this.schema=schema;
         return this.schema
     }
-    insert(data:object):string{
+    insert(data):string{
         if(this.schema){
             if(this.schemaCheck(data)){
                 const uuid:string=this.create_UUID();
@@ -58,7 +61,7 @@ class Index{
     delete(uuid:string):object{
         delete this.value[uuid];
         let index=this.uuid.indexOf(uuid);
-        this.uuid.splice(index,1);
+        this.uuid.splice(index);
         return this.value;
     }
     deleteByIndex(index:number):object{
@@ -156,24 +159,49 @@ class Index{
     }
     updateByCustomIndex(indexName:string,indexValue:any, valuetoupdate:any, updatingKey?:string):void{
         this.index[indexName][indexValue].forEach(uuid => {
-            if(updatingKey) this.value[uuid][updatingKey]=valuetoupdate;
-            else this.value[uuid]=valuetoupdate;
+            if(updatingKey) {
+                this.value[uuid][updatingKey]=valuetoupdate;
+                this.useIndex(uuid,indexName,this.value[uuid])
+                console.log(this.index[indexName][indexValue])
+            }
+            else {
+                this.value[uuid]=valuetoupdate;
+                this.useIndex(uuid,indexName,valuetoupdate)
+            }
         });
+        delete this.index[indexName][indexValue];
+    }
+    forEach(func:Function):Array<any>{
+        let ans:Array<any>=[];
+        this.uuid.forEach((value,i):any=>{
+            ans.push(func(this.value[value],i,value))
+        });
+        return ans;
+    }
+    toString(){
+        return JSON.stringify(this.value);
+    }
+    allUuid():Array<string>{
+        return this.uuid; 
+    }
+    arrayToIndex(array:Array<object>,keyName?:string,schema?:Array<string>):Array<string>{
+        if(schema) this.makeSchema(schema);
+        if(keyName) this.createIndex(keyName);
+        let Mvalue:Array<string>=[];
+        array.forEach((value)=>{
+            Mvalue.push(this.insert(value));
+        });
+        return Mvalue;
+    }
+    objectToIndex(object:object,keyName?:string,schema?:Array<string>):Array<string>{
+        if(schema) this.makeSchema(schema);
+        if(keyName) this.createIndex(keyName);
+        let Mvalue:Array<string>=[];
+        for(let key in object){
+            Mvalue.push(this.insert(object[key]));
+        }
+        return Mvalue;
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
